@@ -1,16 +1,18 @@
 import { Container, LinearProgress, Typography } from "@material-ui/core"
 import Grid from "@material-ui/core/Grid/Grid"
 import Paper from "@material-ui/core/Paper/Paper"
-import React, { useEffect } from "react"
+import React, { ChangeEvent,  useEffect, useState} from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { AppRootStateType } from "../state/store"
 import { getUsersTC, removeUserAC } from "../state/users-reducer"
 import { UserResponseType } from "../types/users"
 import { ContactsTable } from "./ContactsTable/contactsTable"
+import { Search } from "./search/Search"
 
 type ContactsType = {}
 
 export const Contacts: React.FC<ContactsType> = (props) => {
+
 	const users = useSelector<AppRootStateType, UserResponseType[]>(
 		(state) => state.users.users
 	)
@@ -18,18 +20,34 @@ export const Contacts: React.FC<ContactsType> = (props) => {
 		(state) => state.app.status
 	)
 	const dispath = useDispatch()
+	const [filter, setFilter] = useState('')
 
 	useEffect(() => {
 		dispath(getUsersTC())
 	}, [])
 
-	const removeUser=(id:number)=>{
+	const removeUser = (id: number) => {
 		dispath(removeUserAC(id))
 	}
 
 	if (status || !users.length) {
 		return <LinearProgress color='secondary' />
 	}
+
+	//search - filter
+	const filteredUser = users.filter((user) => {
+		const matchValue = filter.toLowerCase()
+		return user.name.toLocaleLowerCase().includes(matchValue) || user.username.toLocaleLowerCase().includes(matchValue) || user.email.toLocaleLowerCase().includes(matchValue)
+	})
+
+	const searchHandler = (e: ChangeEvent<HTMLInputElement>) => {
+		setFilter(e.currentTarget.value)
+	}
+
+	// const light = (str:string) => {
+	// 	return <Hightlight filter={filter} str={str} />
+	//  }
+
 
 	return (
 		<Container>
@@ -42,10 +60,12 @@ export const Contacts: React.FC<ContactsType> = (props) => {
 					</Paper>
 				</Grid>
 				<Grid item xs={12}>
-					<ContactsTable users={users} removeUser={removeUser} />
-					
+					<Search filter={filter} searchHandler={searchHandler}/>
+					<ContactsTable users={filteredUser} removeUser={removeUser}  filter={filter}/>
 				</Grid>
 			</Grid>
 		</Container>
 	)
 }
+
+
