@@ -1,6 +1,7 @@
-import React, { ChangeEvent,  useEffect, useState} from "react"
+import React from "react"
+
 type HightlightType = {
-	filter:any
+	filter:string
 	str:any
 }
 

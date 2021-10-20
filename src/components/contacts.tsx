@@ -1,7 +1,7 @@
 import { Container, LinearProgress, Typography } from "@material-ui/core"
 import Grid from "@material-ui/core/Grid/Grid"
 import Paper from "@material-ui/core/Paper/Paper"
-import React, { ChangeEvent,  useEffect, useState} from "react"
+import React, { ChangeEvent,  useCallback,  useEffect, useState} from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { AppRootStateType } from "../state/store"
 import { getUsersTC, removeUserAC } from "../state/users-reducer"
@@ -27,15 +27,15 @@ export const Contacts: React.FC<ContactsType> = (props) => {
 	}, [])
 
 
-	const removeUser = (id: number) => {
+	const removeUser =useCallback( (id: number) => {
 		dispath(removeUserAC(id))
-	}
+	}, [ removeUserAC])
 
 	if (status || !users.length) {
 		return <LinearProgress color='secondary' />
 	}
 
-	//search - filter
+	//! search - filter
 	const filteredUser = users.filter((user) => {
 		const matchValue = filter.toLowerCase()
 		return user.name.toLocaleLowerCase().includes(matchValue) || user.username.toLocaleLowerCase().includes(matchValue) || user.email.toLocaleLowerCase().includes(matchValue)
@@ -49,7 +49,8 @@ export const Contacts: React.FC<ContactsType> = (props) => {
 	// 	return <Hightlight filter={filter} str={str} />
 	//  }
 
-	// button reset
+
+	//! button reset
 	const resetHandler=()=>{
 		setFilter('')
 		dispath(getUsersTC())
