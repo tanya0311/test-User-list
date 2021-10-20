@@ -13,8 +13,8 @@ export const Hightlight:React.FC<HightlightType> = (props) => {
 	const matchValue = str.match(regexp)
 	//затем проверяем
 	if (matchValue) {
-	  console.log('matchValue', matchValue)
-	  console.log('str.split(regexp)', str.split(regexp))
+	//   console.log('matchValue', matchValue)
+	//   console.log('str.split(regexp)', str.split(regexp))
 	  //разделим строку на те элементы до появления совпадения и после и вернем все это в переменную
 	  // str.split(regexp) - получим массив из строк разделенный нашим фильтром
 	  return str.split(regexp).map((s:string, index:number, array:any) => {

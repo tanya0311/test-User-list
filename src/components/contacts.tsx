@@ -26,6 +26,7 @@ export const Contacts: React.FC<ContactsType> = (props) => {
 		dispath(getUsersTC())
 	}, [])
 
+
 	const removeUser = (id: number) => {
 		dispath(removeUserAC(id))
 	}
@@ -48,6 +49,11 @@ export const Contacts: React.FC<ContactsType> = (props) => {
 	// 	return <Hightlight filter={filter} str={str} />
 	//  }
 
+	// button reset
+	const resetHandler=()=>{
+		setFilter('')
+		dispath(getUsersTC())
+	}
 
 	return (
 		<Container>
@@ -61,6 +67,7 @@ export const Contacts: React.FC<ContactsType> = (props) => {
 				</Grid>
 				<Grid item xs={12}>
 					<Search filter={filter} searchHandler={searchHandler}/>
+					<button onClick={resetHandler}>RESET</button>
 					<ContactsTable users={filteredUser} removeUser={removeUser}  filter={filter}/>
 				</Grid>
 			</Grid>
