@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button"
 import { Modal } from "../Modal/modal"
 import { Delete } from "@material-ui/icons"
 import IconButton from "@material-ui/core/IconButton/IconButton"
+import style from "./UsersList.module.css"
 
 type ContactsTableType = {
 	users: UserResponseType[]
@@ -19,7 +20,7 @@ type ContactsTableType = {
 	filter: string
 }
 
-export const ContactsTable: React.FC<ContactsTableType> = (props) => {
+export const UsersList: React.FC<ContactsTableType> = (props) => {
 	const { users, removeUser, filter } = props
 
 	//modal
@@ -44,13 +45,13 @@ export const ContactsTable: React.FC<ContactsTableType> = (props) => {
 	return (
 		<div>
 			<TableContainer component={Paper}>
-				<Table aria-label='contacts table'>
-					<TableHead>
+				<Table data-label='contacts table' className={style.table}>
+					<TableHead className={style.tableHead}>
 						<TableRow>
-							<TableCell align='center'>Name</TableCell>
-							<TableCell align='center'>Username</TableCell>
-							<TableCell align='center'>Email</TableCell>
-							<TableCell align='center'></TableCell>
+							<TableCell >Name</TableCell>
+							<TableCell >Username</TableCell>
+							<TableCell >Email</TableCell>
+							<TableCell ></TableCell>
 						</TableRow>
 					</TableHead>
 
@@ -64,12 +65,19 @@ export const ContactsTable: React.FC<ContactsTableType> = (props) => {
 											title={"Information"}
 											content={
 												<div>
-													<div><strong>Adress:</strong> <div> <p>{row.address.street}, {row.address.suite}</p> 
-                                       <p>{row.address.city}</p>
-                                       <p>{row.address.zipcode}</p>
-                                       </div>
-                                       </div>
-													<p><strong>Company:</strong> {row.company.name} </p>
+													<div className={style.adressBlock}>
+														<strong>Adress:</strong>
+														<div className={style.adress}>
+															<p>
+																{row.address.street}, {row.address.suite}
+															</p>
+															<p>{row.address.city}</p>
+															<p>{row.address.zipcode}</p>
+														</div>
+													</div>
+													<div className={style.companyBlock}>
+														<strong>Company:</strong> <p>{row.company.name}</p>
+													</div>
 												</div>
 											}
 											footer={<Button onClick={() => setOpen(0)}>Close</Button>}
@@ -78,16 +86,15 @@ export const ContactsTable: React.FC<ContactsTableType> = (props) => {
 									)}
 
 									<TableRow key={row.id}>
-										<TableCell align='center' onClick={() => setOpen(row.id)}>
+										<TableCell data-label="Name" align="left" onClick={() => setOpen(row.id)} className={style.name} >
 											{light(row.name)}
 										</TableCell>
-										<TableCell align='center'>{light(row.username)}</TableCell>
-										<TableCell align='center'>{light(row.email)}</TableCell>
+										<TableCell data-label="Username" align="left" className={style.username}>{light(row.username)} </TableCell>
+										<TableCell data-label="Email" align="left" className={style.email}>{light(row.email)}</TableCell>
 
 										<TableCell align='center'>
 											<IconButton
-												aria-label='delete'
-												// size='small'
+												data-label='delete'
 												color='secondary'
 												onClick={() => {
 													removeUserHandler(row.id)

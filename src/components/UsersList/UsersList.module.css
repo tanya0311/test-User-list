@@ -1,0 +1,63 @@
+strong{
+   display: inline-block;
+   min-width: 90px;
+   margin-right: 10px;
+}
+p{
+   margin: 0 0 10px;
+}
+.adressBlock, .companyBlock{
+display: flex;
+flex-wrap: wrap
+}
+.companyBlock{
+margin-top: 20px;
+}
+
+.tableHead{
+   text-align: left;
+}
+.tableHead tr th {
+   font-weight: bold;
+   color: rgb(51, 31, 235) !important;
+}
+.name{
+   font-style: italic;
+   font-weight: 500 !important; 
+}
+.email{
+   color:rgb(42, 162, 255) !important;
+}
+
+
+@media screen and (max-width: 650px) {
+   table.table thead {
+     display: none;
+   }
+   table.table tr {
+     display: block;
+     margin-bottom: 1rem;
+     border-bottom: 2px solid #e8e9eb;
+   }
+   table.table td {
+     display: block;
+     text-align: right;
+   }
+   table.table td:before {
+     content: attr(data-label);
+     float: left;
+     font-weight: bold;
+     color: rgb(51, 31, 235);
+   }
+ }
+ @media screen and (max-width: 365px) {
+   .adressBlock, .companyBlock, strong{
+      display: block;
+      padding-bottom: 15px ;
+      }
+      .adressBlock p, .companyBlock p {
+         
+         margin-left: 40px;
+      
+         }
+ }
