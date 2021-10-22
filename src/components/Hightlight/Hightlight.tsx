@@ -1,4 +1,5 @@
 import React from "react"
+import style from "./Hightlight.module.css"
 
 type HightlightType = {
 	filter:string
@@ -23,7 +24,7 @@ export const Hightlight:React.FC<HightlightType> = (props) => {
 			 // первое совподение которое получили в matchValue
 			const c = matchValue.shift()
 			//возвращаем фрагмент и совподение
-			return <>{s}<span className={'hightlight'}>{c}</span></>
+			return <>{s}<span className={style.hightlight}>{c}</span></>
 		 }
 		 return s
 	  })

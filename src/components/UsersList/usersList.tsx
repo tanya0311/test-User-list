@@ -7,7 +7,7 @@ import TableHead from "@material-ui/core/TableHead/TableHead"
 import TableRow from "@material-ui/core/TableRow/TableRow"
 import React, { useCallback, useState } from "react"
 import { UserResponseType } from "../../types/users"
-import { Hightlight } from "../search/Hightlight"
+import { Hightlight } from "../Hightlight/Hightlight"
 import Button from "@material-ui/core/Button"
 import { Modal } from "../Modal/modal"
 import { Delete } from "@material-ui/icons"
@@ -62,7 +62,7 @@ export const UsersList: React.FC<ContactsTableType> = (props) => {
 									{row.id === open && (
 										<Modal
 											show={true}
-											title={"Information"}
+											title={row.name}
 											content={
 												<div>
 													<div className={style.adressBlock}>
@@ -92,7 +92,7 @@ export const UsersList: React.FC<ContactsTableType> = (props) => {
 										<TableCell data-label="Username" align="left" className={style.username}>{light(row.username)} </TableCell>
 										<TableCell data-label="Email" align="left" className={style.email}>{light(row.email)}</TableCell>
 
-										<TableCell align='center'>
+										<TableCell align="left">
 											<IconButton
 												data-label='delete'
 												color='secondary'

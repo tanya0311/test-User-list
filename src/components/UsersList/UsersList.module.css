@@ -49,6 +49,10 @@ margin-top: 20px;
      font-weight: bold;
      color: rgb(51, 31, 235);
    }
+   table.table tbody tr {
+     border-color: cadetblue;
+
+    }
  }
  @media screen and (max-width: 365px) {
    .adressBlock, .companyBlock, strong{
@@ -56,8 +60,6 @@ margin-top: 20px;
       padding-bottom: 15px ;
       }
       .adressBlock p, .companyBlock p {
-         
          margin-left: 40px;
-      
          }
  }

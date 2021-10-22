@@ -1,28 +1,23 @@
-
-.search{
-  display: flex;
-  /* justify-content: space-around; */
-  margin-bottom: 40px;
+.search {
+	display: flex;
+	margin-bottom: 40px;
 }
-.search input{
-  display: inline-block;
-  width: 70%;
-  margin: 0 30px 0 5px;
-  padding: 5px 10px;
+.search input {
+	display: inline-block;
+	width: 70%;
+	margin: 0 30px 0 5px;
+	padding: 5px 10px;
 }
-.search input:focus{
-  outline: none;
- border:1px solid #f50057;
-
+.search input:focus {
+	outline: none;
+	border: 1px solid #f50057;
 }
 
 @media screen and (max-width: 530px) {
-  .search input{
-     width: 80%;
-     margin: 0 10px 0 0;
-  }
+	.search input {
+		width: 80%;
+		margin: 0 10px 0 0;
+	}
 }
 
-.hightlight{
-  background: yellow;
-}
+

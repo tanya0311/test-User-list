@@ -46,15 +46,7 @@ export const removeUserAC = (userId: number) => {
 		userId,
 	} as const
 }
-// export const searchUserAC = (name: string, username:string, email:string) => {
-// 	return {
-// 		type: "SEARCH-USERS",
-// 		name, 
-// 		username,
-// 		email
-		
-// 	} as const
-// }
+
 
 //thunks
 export const getUsersTC = () => (dispatch: Dispatch) => {
