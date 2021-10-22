@@ -1,7 +1,7 @@
 import { Dispatch } from "redux"
 import { usersAPI } from "../dal/api"
 import { UserResponseType } from "../types/users"
-import { setStatusAC } from "./app-reducer"
+import { ActionsAppType, setStatusAC } from "./app-reducer"
 
 //types
 export type initialType = typeof initialState
@@ -49,7 +49,7 @@ export const removeUserAC = (userId: number) => {
 
 
 //thunks
-export const getUsersTC = () => (dispatch: Dispatch) => {
+export const getUsersTC = () => (dispatch: Dispatch<ActionsUsersType | ActionsAppType>) => {
 	dispatch(setStatusAC(true))
 	usersAPI
 		.getUsers()

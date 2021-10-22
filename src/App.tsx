@@ -21,6 +21,7 @@ function App() {
 		(state) => state.app.status
 	)
 	const dispath = useDispatch()
+
 	const [filter, setFilter] = useState("")
 
 	useEffect(() => {
@@ -38,7 +39,7 @@ function App() {
 		return <LinearProgress color='secondary' />
 	}
 
-	//! search - filter
+	// search - filter
 
 	const filteredUser = users.filter((user) => {
 		const matchValue = filter.toLowerCase()
@@ -53,7 +54,7 @@ function App() {
 		setFilter(e.currentTarget.value)
 	}
 
-	//! button reset
+	// button reset
 	const resetHandler = () => {
 		setFilter("")
 		dispath(getUsersTC())
